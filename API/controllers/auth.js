@@ -41,7 +41,6 @@ export const register = (req, res) => {
 export const login = (req, res) => {
     let username = req.body.username
 
-    
     //check whether user already exists
 
     const getQuery = "SELECT * FROM users WHERE username = ?"
@@ -65,12 +64,13 @@ export const login = (req, res) => {
         res.cookie("access_token", token, {
             httpOnly: true
         }).status(200).json(other)
-
+        console.log("user logged in")
         //console.log(res.cookie);
     })
 }
 
 export const logout = (req, res) => {
+    console.log("user logged out")
     res.clearCookie("access_token", {
         sameSite:"none",
         secure:true
